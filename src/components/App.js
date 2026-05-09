@@ -4,8 +4,12 @@ import React, {  useCallback, useState } from 'react'
 import ReactMemo from './ReactMemo';
 
  export default function App() {
-    const [skill,setSkill]=useState([]);
+    const [skill,setSkill]=useState(["HTML",
+   "CSS",
+   "JavaScript",
+   "React"]);
     const [input,setInput]=useState('');
+   const [error,setError]=useState('')
 
 
     const handleDelete=useCallback((id)=>{
@@ -16,10 +20,22 @@ import ReactMemo from './ReactMemo';
         setInput(e.target.value)
     }
 
-   function handleSubmit(e){
-        setSkill(prev=>([...prev,input]));
-        setInput('');
+function handleSubmit(){
+
+   if(input.trim()===''){
+      setError("Please Enter your skill.");
+      return;
    }
+
+   if(skill.includes(input)){
+      setError("Skill already exists.");
+      return;
+   }
+
+   setSkill(prev => [...prev,input]);
+   setInput('');
+   setError('');
+}
 
 //     function handleDelete(id){
 //         setSkill(skill.filter((el,idx)=>(
@@ -29,9 +45,11 @@ import ReactMemo from './ReactMemo';
 
    return (
      <div>
-        <input type='text' value={input} onChange={handleChange}/>
-        <button onClick={handleSubmit}>submit</button>
+        <input type='text' value={input} onChange={handleChange} id="skill-input"/>
+        <button onClick={handleSubmit} id="skill-add-btn">submit</button>
+        <h1 id="heading">Skills</h1>
         <ReactMemo handleDelete={handleDelete} skill={skill} />
+        <p>{error}</p>
      </div>
    )
  }

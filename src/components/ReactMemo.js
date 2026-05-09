@@ -4,7 +4,7 @@ const ReactMemo=React.memo(function ReactMemo({skill,handleDelete}){
    return (
      <ul>
             {skill.map((el,idx)=>(
-                <li key={idx} onClick={()=>handleDelete(idx)}>{el}</li>
+                <li key={idx} onClick={()=>handleDelete(idx)} id="skill-number-idx">{el}</li>
             ))}
         </ul>
    )

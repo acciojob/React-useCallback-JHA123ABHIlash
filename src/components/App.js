@@ -46,7 +46,7 @@ function handleSubmit(){
    return (
      <div>
         <input type='text' value={input} onChange={handleChange} id="skill-input"/>
-        <button onClick={handleSubmit} id="skill-add-btn">submit</button>
+        <button onClick={handleSubmit} id="skill-add-btn">Add Skill</button>
         <h1 id="heading">Skills</h1>
         <ReactMemo handleDelete={handleDelete} skill={skill} />
         <p>{error}</p>
